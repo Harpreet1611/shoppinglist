@@ -47,6 +47,7 @@ const App = ({ signOut }) => {
     const data = {
       name: form.get("name"),
       description: form.get("description"),
+      price: form.get("price"),
       image: image.name,
     };
     if (!!data.image) await Storage.put(data.name, image);
@@ -76,22 +77,30 @@ const App = ({ signOut }) => {
         <Flex direction="row" justifyContent="center">
           <TextField
             name="name"
-            placeholder="Note Name"
-            label="Note Name"
+            placeholder="Food Name"
+            label="Food Name"
             labelHidden
             variation="quiet"
             required
           />
           <TextField
             name="description"
-            placeholder="Note Description"
-            label="Note Description"
+            placeholder="Food Description"
+            label="Food Description"
+            labelHidden
+            variation="quiet"
+            required
+          />
+          <TextField
+            name="price"
+            placeholder="Food Price"
+            label="Food Price"
             labelHidden
             variation="quiet"
             required
           />
           <Button type="submit" variation="primary">
-            Create Note
+            Create Food
           </Button>
         </Flex>
       </View>
@@ -114,6 +123,7 @@ const App = ({ signOut }) => {
       {note.name}
     </Text>
     <Text as="span">{note.description}</Text>
+    <Text as="span">{note.price}</Text>
     {note.image && (
       <Image
         src={note.image}
