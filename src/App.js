@@ -99,7 +99,7 @@ const App = ({ signOut }) => {
             variation="quiet"
             required
           />
-          <Button type="submit" variation="primary">
+          <Button variation="link" onClick={() => createNote (note)}>
             Create Food
           </Button>
         </Flex>
