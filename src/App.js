@@ -35,6 +35,7 @@ const App = ({ signOut }) => {
           const url = await Storage.get(note.name);
           note.image = url;
         }
+        note.price = parseFloat(note.price);
         return note;
       })
     );
@@ -45,10 +46,12 @@ const App = ({ signOut }) => {
     event.preventDefault();
     const form = new FormData(event.target);
     const image = form.get("image");
+    const price = form.get("price");
     const data = {
       name: form.get("name"),
       description: form.get("description"),
       image: image.name,
+      price: price,
     };
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
@@ -123,7 +126,7 @@ const App = ({ signOut }) => {
     <Text as="strong" fontWeight={700}>
       {note.name}
     </Text>
-    <Text as="span">{note.description}</Text>
+    <Text as="span">{note.description} ({note.price})</Text>
     {note.image && (
       <Image
         src={note.image}
