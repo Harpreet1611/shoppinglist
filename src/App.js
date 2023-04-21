@@ -49,7 +49,6 @@ const App = ({ signOut }) => {
       name: form.get("name"),
       description: form.get("description"),
       image: image.name,
-      price: form.get("price"),
     };
     if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
@@ -125,12 +124,10 @@ const App = ({ signOut }) => {
       {note.name}
     </Text>
     <Text as="span">{note.description}</Text>
-    <Text as="span">{note.price}</Text>
-
     {note.image && (
       <Image
         src={note.image}
-        alt={`visual aid for ${note.name}`}
+        alt={`visual aid for ${notes.name}`}
         style={{ width: 400 }}
       />
     )}
