@@ -31,7 +31,7 @@ const App = ({ signOut }) => {
     await Promise.all(
       notesFromAPI.map(async (note) => {
         if (note.image) {
-          const url = await Storage.get(note.image);
+          const url = await Storage.get(note.name);
           note.image = url;
         }
         return note;
@@ -99,15 +99,6 @@ const App = ({ signOut }) => {
             variation="quiet"
             required
           />
-          <TextField
-            name="image"
-            label="Food Image"
-            labelHidden
-            variation="quiet"
-            required
-          >
-            <input type="file" id="image" />
-          </TextField>
           <Button type="submit" variation="primary">
             Create Food
           </Button>
@@ -136,7 +127,7 @@ const App = ({ signOut }) => {
     {note.image && (
       <Image
         src={note.image}
-        alt={`visual aid for ${note.name}`}
+        alt={`visual aid for ${notes.name}`}
         style={{ width: 400 }}
       />
     )}
